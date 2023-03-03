@@ -12,9 +12,6 @@ def contains_odd(input_list):
     return False
 
 
-print(contains_odd([1, 4, 6]))
-
-
 # %%
 # Create a function that accepts a list of integers, and returns a list of bool.
 # The return list should be a "mask" and indicate whether the list element is odd or not.
@@ -26,9 +23,6 @@ print(contains_odd([1, 4, 6]))
 # %%
 def is_odd(input_list):
     return [num % 2 != 0 for num in input_list]
-
-
-print(is_odd([1, 3, 4, 5, 6, 7, 8, 10]))
 
 
 # %%
@@ -44,9 +38,6 @@ def element_wise_sum(input_list_1, input_list_2):
     return [num1 + num2 for num1, num2 in zip(input_list_1, input_list_2)]
 
 
-print(element_wise_sum([0, 1, 2, 3], [3, 2, 1, 0]))
-
-
 # %%
 # Create a function that accepts a dictionary and returns its items as a list of tuples
 # (return should look like this: [(key,value),(key,value),....])
@@ -57,9 +48,6 @@ print(element_wise_sum([0, 1, 2, 3], [3, 2, 1, 0]))
 # %%
 def dict_to_list(input_dict):
     return list(input_dict.items())
-
-
-print(dict_to_list({'a': 1, 'b': 2, 'c': 3}))
 
 
 # %%

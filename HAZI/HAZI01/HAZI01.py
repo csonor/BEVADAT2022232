@@ -11,9 +11,6 @@ def subset(input_list, start_index, end_index):
     return input_list[start_index:end_index + 1]
 
 
-print(subset([1, 2, 3, 4, 5], 1, 3))
-
-
 # %%
 # Create a function that returns every nth element of a list.
 # return type: list
@@ -26,9 +23,6 @@ def every_nth(input_list, step_size):
     return input_list[::step_size]
 
 
-print(every_nth([1, 2, 3, 4, 5, 6, 7, 8, 9], 3))
-
-
 # %%
 # Create a function that can decide whether a list contains unique values or not
 # return type: bool
@@ -39,9 +33,6 @@ print(every_nth([1, 2, 3, 4, 5, 6, 7, 8, 9], 3))
 # %%
 def unique(input_list):
     return len(set(input_list)) == len(input_list)
-
-
-print(unique([1, 2, 3, 4, 5, 5, 6, 7, 8, 9]))
 
 
 # %%
@@ -62,10 +53,6 @@ def flatten(input_list):
     return result
 
 
-print(
-    flatten([[1, 2], [3, [4, 5, [6], 7, [8, 9, [10, 11]], 12, 13], 14], 15, 16]))
-
-
 # %%
 # Create a function that concatenates n lists
 # return type: list
@@ -79,9 +66,6 @@ def merge_lists(*args):
     for arg in args:
         result.extend(arg)
     return result
-
-
-print(merge_lists([1, 2], [3], [4, 5, 6]))
 
 
 # %%
@@ -100,9 +84,6 @@ def reverse_tuples(input_list):
     return result
 
 
-print(reverse_tuples([(1, 2, 3), (4, 5, 6), (7, 8, 9)]))
-
-
 # %%
 # Create a function that removes duplicates from a list
 # return type: list
@@ -115,9 +96,6 @@ def remove_duplicates(input_list):
     return list(set(input_list))
 
 
-print(remove_duplicates([1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 7, 8, 8, 9]))
-
-
 # %%
 # Create a function that transposes a nested list (matrix)
 # return type: list
@@ -128,9 +106,6 @@ print(remove_duplicates([1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 7, 8, 8, 9]))
 # %%
 def transpose(input_list):
     return [[row[i] for row in input_list] for i in range(len(input_list[0]))]
-
-
-print(transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
 
 
 # %%
@@ -149,10 +124,6 @@ def split_into_chunks(input_list, chunk_size):
     return result
 
 
-print(split_into_chunks([[1, 2], [3, 4, 5], [6],
-      [7, 8, 9, 10], [11, 12, 13], [14, 15]], 2))
-
-
 # %%
 # Create a function that can merge n dictionaries
 # return type: dictionary
@@ -166,10 +137,6 @@ def merge_dicts(*dict):
     for d in dict:
         result.update(d)
     return result
-
-
-print(merge_dicts({1: 'A', 2: 'B'}, {3: 'C', 4: 'D', 5: 'E'}, {
-      6: 'F', 7: 'G', 8: 'H', 9: 'I'}, {10: 'J'}))
 
 
 # %%
@@ -191,9 +158,6 @@ def by_parity(input_list):
     return result
 
 
-print(by_parity([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]))
-
-
 # %%
 # Create a function that receives a dictionary like this: {"some_key":[1,2,3,4],"another_key":[1,2,3,4],....}
 # and return a dictionary like this : {"some_key":mean_of_values,"another_key":mean_of_values,....}
@@ -210,9 +174,6 @@ def mean_key_value(input_dict):
         mean = sum(values) / len(values)
         result[key] = mean
     return result
-
-
-print(mean_key_value({"asd": [0, 1, 2, 3, 4], "lol": [5, 6, 7, 8, 9]}))
 
 
 # %%
