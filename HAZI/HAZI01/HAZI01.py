@@ -118,10 +118,7 @@ def transpose(input_list):
 
 # %%
 def split_into_chunks(input_list, chunk_size):
-    result = []
-    for i in range(0, len(input_list), chunk_size):
-        result.append(input_list[i:i+chunk_size])
-    return result
+    return [input_list[i:i + chunk_size] for i in range(0, len(input_list), chunk_size)]
 
 
 # %%
