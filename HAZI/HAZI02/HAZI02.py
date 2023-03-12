@@ -161,7 +161,7 @@ def list_days(start_date: str, end_date: str) -> np.array:
     start = np.datetime64(start_date)
     end = np.datetime64(end_date)
     days = np.arange(start, end, np.timedelta64(1, 'D'))
-    return np.array(days, dtype='datetime64[D]').astype(str)
+    return np.array(days, dtype='datetime64[D]')
 
 
 # %%
