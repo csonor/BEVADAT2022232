@@ -31,7 +31,7 @@ def column_swap(arr: np.array) -> np.array:
 
 # %%
 def compare_two_array(a: np.array, b: np.array) -> np.array:
-    return np.where(a == b)[0]
+    return np.where(a == b)
 
 
 # %%
@@ -160,8 +160,7 @@ def add_border(arr: np.array) -> np.array:
 def list_days(start_date: str, end_date: str) -> np.array:
     start = np.datetime64(start_date)
     end = np.datetime64(end_date)
-    days = np.arange(start, end + np.timedelta64(1, 'D'),
-                     np.timedelta64(1, 'D'))
+    days = np.arange(start, end, np.timedelta64(1, 'D'))
     return np.array(days, dtype='datetime64[D]').astype(str)
 
 
