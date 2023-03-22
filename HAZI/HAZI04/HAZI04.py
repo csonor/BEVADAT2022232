@@ -2,7 +2,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import random
 
 # %%
 '''
@@ -99,9 +98,9 @@ függvény neve: average_scores
 
 def average_scores(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
-    group = new_df.groupby('parental level of education').mean(
-        [['math score', 'reading score', 'writing score']])
-    return group.mean()
+    return new_df.groupby('parental level of education').agg({'math score': 'mean',
+                                                                            'reading score': 'mean',
+                                                                            'writing score': 'mean'})
 
 
 # %%
@@ -120,8 +119,8 @@ függvény neve: add_age
 
 def add_age(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
-    random.seed(42)
-    new_df['age'] = [random.randint(18, 66) for i in range(len(new_df))]
+    np.random.seed(42)
+    new_df['age'] = np.random.randint(18, 67, new_df.shape[0])
     return new_df
 
 
@@ -169,18 +168,22 @@ függvény neve: add_grade
 
 def add_grade(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
-    new_df["total score"] = new_df["math score"] + \
-        new_df["reading score"] + new_df["writing score"]
-    new_df["percentage"] = new_df["total score"] / 300 * 100
-    conditions = [
-        (new_df["percentage"] >= 90),
-        (new_df["percentage"] >= 80) & (new_df["percentage"] < 90),
-        (new_df["percentage"] >= 70) & (new_df["percentage"] < 80),
-        (new_df["percentage"] >= 60) & (new_df["percentage"] < 70),
-        (new_df["percentage"] < 60)
-    ]
-    choices = ['A', 'B', 'C', 'D', 'F']
-    new_df["grade"] = pd.Series(np.select(conditions, choices))
+    total_score = new_df['math score'] + \
+        new_df['reading score'] + new_df['writing score']
+    percentage = total_score / 300
+    grade = []
+    for p in percentage:
+        if p >= 0.9:
+            grade.append('A')
+        elif p >= 0.8:
+            grade.append('B')
+        elif p >= 0.7:
+            grade.append('C')
+        elif p >= 0.6:
+            grade.append('D')
+        else:
+            grade.append('F')
+    new_df['grade'] = grade
     return new_df
 
 
@@ -233,7 +236,7 @@ függvény neve: writing_hist
 def writing_hist(df: pd.DataFrame) -> plt.Figure:
     new_df = df.copy()
     fig, ax = plt.subplots()
-    ax.hist(df['writing score'], bins=75)
+    ax.hist(new_df['writing score'])
     ax.set(title='Distribution of Writing Scores',
            xlabel='Writing score', ylabel='Number of Students')
     return fig
