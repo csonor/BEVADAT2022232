@@ -10,6 +10,9 @@ class KNNClassifier:
         self.k = k
         self.test_split_ratio = test_split_ratio
 
+    def k_neighbors(self) -> int:
+        return self.k
+
     @staticmethod
     def load_csv(path: str) -> Tuple[np.ndarray, np.ndarray]:
         np.random.seed(42)
@@ -47,6 +50,3 @@ class KNNClassifier:
 
     def confusion_matrix(self) -> np.ndarray:
         return confusion_matrix(self.y_test, self.y_preds)
-
-    def k_neighbors(self) -> int:
-        return self.k
