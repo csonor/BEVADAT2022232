@@ -53,3 +53,15 @@ class KNNClassifier:
 
     def confusion_matrix(self) -> pd.DataFrame:
         return pd.DataFrame(confusion_matrix(self.y_test, self.y_preds))
+
+    def best_k(self) -> Tuple[int, float]:
+        orig_k = self.k
+        best_k, best_accuracy = None, 0
+        for k in range(1, 21):
+            self.k = k
+            self.predict(self.x_test)
+            accuracy = self.accuracy()
+            if accuracy > best_accuracy:
+                best_k, best_accuracy = k, accuracy
+        self.k = orig_k
+        return best_k, round(best_accuracy, 2)

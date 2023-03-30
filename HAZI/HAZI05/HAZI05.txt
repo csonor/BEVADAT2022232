@@ -1,0 +1,8 @@
+A load_csv függvény betölti a bemeneti adatokat egy CSV fájlból
+A train_test_split függvény szétválasztja az adathalmazunkat tanító- és teszthalmazra
+Az euclidean függvény kiszámítja az összes elemhez a távolságot az új elemhez, majd kiválasztja a legközelebbi k elemet
+A predict függvény az euclidean függvény segítségével előrejelzi a teszthalmaz elemeinek osztálycímkéit
+Az accuracy függvény kiszámítja a modellünk pontosságát, ami a jó eredményt adó osztályozások arányát jelenti
+A confusion_matrix függvény segítségével vizualizáljuk a modellünk teljesítményét
+Az accuracy és confusion_matrix függvények segítségével tudjuk elemezni a modellünk teljesítményét és annak pontosságát
+A best_k függvény kiszámítja a modell legjobb k értékét 1 és 20 közötti intervallumban
