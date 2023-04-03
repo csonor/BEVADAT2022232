@@ -50,4 +50,5 @@ class KNNClassifier:
         return true_positive/len(self.y_test)*100
 
     def confusion_matrix(self) -> np.ndarray:
-        return np.ndarray(confusion_matrix(self.y_test, self.y_preds))
+        conf_matrix = confusion_matrix(self.y_test, self.y_preds)
+        return conf_matrix

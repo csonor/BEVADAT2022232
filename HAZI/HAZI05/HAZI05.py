@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from typing import Tuple
 from scipy.stats import mode
@@ -41,8 +42,7 @@ class KNNClassifier:
         labels_pred = []
         for _, x_test_element in x_test.iterrows():
             distances = self.euclidean(x_test_element)
-            distances = pd.concat(
-                [distances, self.y_train], axis=1).sort_values(0).values
+            distances = pd.concat([distances, self.y_train], axis=1).sort_values(0).values
             label_pred = mode(distances[:self.k, 1], axis=None)[0]
             labels_pred.append(label_pred)
         self.y_preds = pd.Series(labels_pred, dtype=pd.Int64Dtype())
@@ -51,8 +51,9 @@ class KNNClassifier:
         true_positive = (self.y_test == self.y_preds).sum()
         return true_positive/len(self.y_test)*100
 
-    def confusion_matrix(self) -> pd.DataFrame:
-        return pd.DataFrame(confusion_matrix(self.y_test, self.y_preds))
+    def confusion_matrix(self) -> np.ndarray:
+        conf_matrix = confusion_matrix(self.y_test, self.y_preds)
+        return conf_matrix
 
     def best_k(self) -> Tuple[int, float]:
         orig_k = self.k
