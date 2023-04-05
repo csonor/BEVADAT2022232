@@ -42,27 +42,28 @@ class KNNClassifier:
         labels_pred = []
         for _, x_test_element in x_test.iterrows():
             distances = self.euclidean(x_test_element)
-            distances = pd.concat([distances, self.y_train], axis=1).sort_values(0).values
-            label_pred = mode(distances[:self.k, 1], axis=None)[0]
+            distances = pd.DataFrame(sorted(zip(distances, self.y_train)))
+            label_pred = distances.iloc[:self.k, 1].mode()
             labels_pred.append(label_pred)
-        self.y_preds = pd.Series(labels_pred, dtype=pd.Int64Dtype())
+        self.y_preds = pd.DataFrame(labels_pred).iloc[:, 0]
 
     def accuracy(self) -> float:
-        true_positive = (self.y_test == self.y_preds).sum()
+        true_positive = (self.y_test.reset_index(drop=True) ==
+                         self.y_preds.reset_index(drop=True)).sum()
         return true_positive/len(self.y_test)*100
 
-    def confusion_matrix(self) -> np.ndarray:
+    def confusion_matrix(self):
         conf_matrix = confusion_matrix(self.y_test, self.y_preds)
         return conf_matrix
 
     def best_k(self) -> Tuple[int, float]:
         orig_k = self.k
-        best_k, best_accuracy = None, 0
-        for k in range(1, 21):
-            self.k = k
+        best_k, best_accuracy = 0, 0.0
+        for i in range(10):
+            self.k = i+1
             self.predict(self.x_test)
             accuracy = self.accuracy()
             if accuracy > best_accuracy:
-                best_k, best_accuracy = k, accuracy
+                best_k, best_accuracy = self.k, accuracy
         self.k = orig_k
         return best_k, round(best_accuracy, 2)
