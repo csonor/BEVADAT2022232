@@ -32,3 +32,6 @@ print(accuracy_score(Y_test, Y_pred))
 #min_samples_split=90, max_depth=10 -> 0.8018333333333333
 #min_samples_split=110, max_depth=11 -> 0.80275
 #min_samples_split=120, max_depth=12 -> 0.80125
+
+#próbálkoztam a test_size állításával is de nem hozott különösebb változást,
+#max_Depth alacsony érték esetén a függvény error-ra fut <~8
