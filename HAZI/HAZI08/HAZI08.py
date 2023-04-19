@@ -47,10 +47,11 @@ Featurejeink legyenek a levél méretek kivéve a "sepal length (cm)", ez legyen
 Egy példa a bemenetre: iris
 Egy példa a kimenetre: X, y
 return type: (numpy.ndarray, numpy.ndarray)
+függvény neve: linear_train_data
 '''
 
 # %%
-def prepare_data_linear(iris):
+def linear_train_data(iris):
     if isinstance(iris, pd.DataFrame):
         iris_df = iris
     else:
@@ -69,10 +70,11 @@ Fontos csak azokkal az adatokkal tanítsunk amihez tartozik adott target.
 Egy példa a bemenetre: iris
 Egy példa a kimenetre: X, y
 return type: (numpy.ndarray, numpy.ndarray)
+függvény neve: logistic_train_data
 '''
 
 # %%
-def prepare_data_logistic(iris: pd.DataFrame):
+def logistic_train_data(iris: pd.DataFrame):
     X = iris[['sepal length (cm)', 'sepal width (cm)',
               'petal length (cm)', 'petal width (cm)']].values
     y = iris.values
@@ -87,6 +89,7 @@ Tegyük determenisztikussá a darabolást, ennek értéke legyen 42.
 Egy példa a bemenetre: X, y
 Egy példa a kimenetre: X_train, X_test, y_train, y_test
 return type: (numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray)
+függvény neve: split_data
 '''
 
 # %%
@@ -103,6 +106,7 @@ Készíts egy függvényt ami feltanít egy lineaáris regressziós modelt, majd
 Egy példa a bemenetre: X_train, y_train
 Egy példa a kimenetre: model
 return type: sklearn.linear_model._base.LinearRegression
+függvény neve: train_linear_regression
 '''
 
 # %%
@@ -119,6 +123,7 @@ Készíts egy függvényt ami feltanít egy logisztikus regressziós modelt, maj
 Egy példa a bemenetre: X_train, y_train
 Egy példa a kimenetre: model
 return type: sklearn.linear_model._base.LogisticRegression
+függvény neve: train_logistic_regression
 '''
 
 # %%
@@ -135,10 +140,11 @@ Készíts egy függvényt, ami a feltanított modellel predikciót tud végre ha
 Egy példa a bemenetre: model, X_test
 Egy példa a kimenetre: y_pred
 return type: numpy.ndarray
+függvény neve: predict
 '''
 
 # %%
-def make_predictions(model, X_test):
+def predict(model, X_test):
     y_pred = model.predict(X_test)
     return y_pred
 
@@ -155,10 +161,11 @@ Az y tengely címe legyen: 'Predicted'
 Egy példa a bemenetre: y_test, y_pred
 Egy példa a kimenetre: scatter plot
 return type: matplotlib.figure.Figure
+függvény neve: plot_actual_vs_predicted
 '''
 
 # %%
-def actual_vs_predicted(y_test, y_pred):
+def plot_actual_vs_predicted(y_test, y_pred):
     fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred)
     ax.set_title('Actual vs Predicted Target Values')
@@ -167,6 +174,7 @@ def actual_vs_predicted(y_test, y_pred):
     plt.show()
     return fig
 
+
 # %%
 ''' 
 Készíts egy függvényt, ami a Négyzetes hiba (MSE) értékét számolja ki a predikciók és a valós értékek között.
@@ -174,11 +182,13 @@ Készíts egy függvényt, ami a Négyzetes hiba (MSE) értékét számolja ki a
 Egy példa a bemenetre: y_test, y_pred
 Egy példa a kimenetre: mse
 return type: float
+függvény neve: evaluate_model
 '''
 
 # %%
-def calculate_mse(y_test, y_pred):
+def evaluate_model(y_test, y_pred):
     mse = np.mean((y_pred - y_test) ** 2)
     return mse
+
 
 
